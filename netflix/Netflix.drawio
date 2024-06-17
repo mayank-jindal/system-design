@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net" modified="2024-05-28T08:00:20.967Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="AaZ4eXJo0lXlKUHLNylN" version="24.4.9" type="device">
+  <diagram name="Page-1" id="B8vzmx_h4SNKFPWK8uPu">
+    <mxGraphModel dx="2074" dy="1146" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-1" value="Admin API client" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-4" value="CDN" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FHQ_w3jcvvahPvwIfv52-5" target="FHQ_w3jcvvahPvwIfv52-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-5" value="CDN Populator" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="310" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-6" value="AWS S3 (Blob storage)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FHQ_w3jcvvahPvwIfv52-9" target="FHQ_w3jcvvahPvwIfv52-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-9" value="API Server" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-10" value="Static Content - postgres" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="650" y="25" width="60" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-11" value="UserMetadata - postgres" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="450" y="40" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-13" value="Cache (Redis)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="200" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="FHQ_w3jcvvahPvwIfv52-14" target="FHQ_w3jcvvahPvwIfv52-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-14" value="Load Balancer" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="340" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="FHQ_w3jcvvahPvwIfv52-15" target="FHQ_w3jcvvahPvwIfv52-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-15" value="Mobile/Web UI" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="480" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FHQ_w3jcvvahPvwIfv52-9" target="FHQ_w3jcvvahPvwIfv52-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FHQ_w3jcvvahPvwIfv52-9" target="FHQ_w3jcvvahPvwIfv52-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.442;entryY=-0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FHQ_w3jcvvahPvwIfv52-1" target="FHQ_w3jcvvahPvwIfv52-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FHQ_w3jcvvahPvwIfv52-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.4;entryY=-0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FHQ_w3jcvvahPvwIfv52-6" target="FHQ_w3jcvvahPvwIfv52-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
