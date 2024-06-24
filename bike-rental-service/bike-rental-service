@@ -1,0 +1,68 @@
+Bike Rental Service
+
+general idea
+
+	•	user and admin
+	•	user search for nearby dock
+	•	dock has bikes
+	•	use RDBMS database
+	•	add a caching mechanism for lets say a particular dock is popular
+	•	add load balancer
+
+
+Entities
+
+	•	bike
+	◦	bike id
+	◦	bikeStatus : enum - NEEDSREPAIR, DOCKED/AVAILABLE, INUSE
+	◦	numberOfTrips
+	•	bikeAttributes
+	◦	bikeid
+	◦	bikeType: enum - MECHANICAL, ELECTRIC
+	◦	Value
+	•	user
+	◦	user id
+	◦	first name
+	◦	last name
+	◦	Email
+	◦	username
+	◦	Password-SHA-256 encoded
+	◦	isBlocked
+	◦	isAdmin
+	◦	paymentPending
+	•	dock
+	◦	zipcode
+	◦	dock id
+	◦	electricBikeAvailable
+	◦	mechanicalBikeAvailable
+	◦	isOpen
+	•	Trip
+	◦	tripId
+	◦	bikeId
+	◦	fromDock
+	◦	toDock
+	◦	Paid
+	◦	Status
+
+
+user facing Apis
+
+	•	/login : username and password
+	•	/register : first name, last name, email, username, password
+	•	/searchDock : currentZipcode/ currentLocation
+	•	/startTrip : bikeId, dockId, userId, startTime
+	◦	add trip to trip table
+	•	/endTrip : bikeId, userId, dockId, endTime - return payment amount
+	◦	add payment amount to userID paymentPending
+	•	/pay : userId, amount - handled via third party
+	•
+
+internal apis / crons
+
+	•	Check number of trips for bikeIds and hcange status to repair
+	•	check payment pending for users, send notification, block account
+	•	Open/close dock based on time
+
+
+
+

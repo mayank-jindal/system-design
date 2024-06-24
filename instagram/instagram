@@ -1,0 +1,32 @@
+Instagram
+
+Questions
+
+-
+
+
+System Requirements
+
+		Upload images from mobile client
+		users follow other users
+		generate a feed of images
+		Scale: 10 million users
+
+10 million users monthly basis
+2 photos per month
+5 MB per photo
+
+10^7*2*5MB = 1.2PB
+
+
+
+Public Endpoints
+
+	1	/register
+	2	/login
+	3	/follow
+	4	/upload
+
+Internal
+	1	/generateFeed
+

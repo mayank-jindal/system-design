@@ -1,0 +1,27 @@
+Functional
+1. upload (video + text)
+2. View feed (videos of followers, bonus recommendations)
+3. Favourite videos + follow users
+
+Non-functional
+1. Highly available 99.99%
+2. Latency
+3. Scale 1M daily users
+
+Estimates
+    Videos 5MB per video * 2 uploads = 10MB /day/user
+    user metadata 1KB /user/day
+
+/uploadVideo
+    - we can upload the video to some blob storage like aws s3
+    - and for the metadata like the video link, etc we can store in our relational db
+
+/viewFeed
+    - since it is a read heavy service, we can have a read-only replica of DB
+    - also since users millions of users can open the app multiple times, it will be too much load to query from db
+        every time they open the app.
+    - So we can introduce a cache that will have the top posts stored in it and like for the
+        first 10 posts we can get from the cache and the remaining we can fetch later from db
+
+/userActivity
+    - it will handle services like following someone, etc and adding those to db

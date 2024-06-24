@@ -1,0 +1,44 @@
+Reddit
+
+	•	50 million users
+	•	25 posts on homepage
+	•	image and text
+	•	top posts 24 hours to display
+	•	consider logged-in users (as UI is different for logged-in and guest users)
+
+Calculations
+
+	•	50 million * 5 visits per day = 250 million page hits on homepage
+	•	250 million page hits * 25 posts = 6.2 billion posts
+	•	Post:
+	    ◦	Title - 50 characters * 2 bytes/char = 100 bytes
+	    ◦	# of comments - int : 4 bytes
+	    ◦	# of golds - int : 4 bytes
+	    ◦	Timestamp - float : 8 bytes
+	    ◦	300 characters for text content - 600 bytes
+	    ◦	Image thumbnail- 10KB
+	    ◦	link to complete image - 100 characters - 200 bytes
+	    ◦	link to full post - 100 characters - 200 bytes
+
+High level design
+
+	•	microservice architecture
+	•	web server
+	•	app server
+	•	ranking service
+	•	feed service
+	•	User service (has db)
+	•	post service (has db) - nosql server - horizontal
+	    ◦	scalability - shard by subReddit
+	•	object storage
+
+Notes:
+
+		for scalability, initially thought to use modulo shard criteria like 100 % 3 will be the shard the post is stored in. But the problem with it will be if the shards get full and we want to scale horizontally, then we will have to repartition all our data. So as a solution to that, we can use consistent hashing as the sharding criteria.
+		as for on what column to do the sharding, initial thought was to shard it on post id but the problem with it will be if we want to fetch top posts from various subreddits that the user is subscribed to, then we will have to query all the shards anyways. That is not a feasible approach.
+		so the better solution is to shard based on subreddits. that way if user is subscribed to ‘funny’, then we would need to query only a single shard instead of all the shards. One problem with this approach can be that some shards can be much bigger than others so for that, we can either break up the shard or create a new shard and using consistent hashing to move data around.
+		Now the next problem is how can we get latest posts every time user visit the home page. So we can do caching based on subreddits and top posts from the subreddits get added to the cache by a cache crawler
+		Next is there might be many subreddits that are not particularly active. So we can have the crawler fetch latest 24 hour posts from the active sub reddits and exclude the non-active ones.
+		And to maintain the subreddits, we can have another layer of crawling at a much slower pace like once a day to check if the subreddit had any posts in last 24 hours else mark it as non-active.
+
+

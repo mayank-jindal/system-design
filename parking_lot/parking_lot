@@ -1,0 +1,59 @@
+Parking Lot
+
+Questions
+
+- is it a single parking lot or multiple parking lots managed by a singular app
+- different types of vehicles
+- rates of vehicles
+- payment handled by third party
+
+
+System Requirements
+
+- need to reserve a parking spot for oncoming vehicles
+- present a ticket to user
+- user needs to pay for the parking at the exit in cash or via the mobile app
+- consistent such that no 2 users get same parking spot
+- types of vehicles : compact, regular, large
+- flat rate differentiating based on type
+
+Public Endpoints
+
+1. /reserve
+params: vehicle type, start time
+return: spot_id , reservation_id
+
+2. /pay
+params: reservation_id
+returns: boolean
+
+
+Internal Endpoints
+
+1. /calculate_payment
+params: reservation_id
+returns: integer/double
+
+2. /freespots
+params: vehicle_type, start_time
+
+3. /allocate_spot
+params: vehicle_type, start_time
+
+4. /register
+params: username, pw, first name, last name, email
+
+5. /login
+params: username, pw
+
+
+Data Schema
+
+refer to draw.io
+
+High Level Architecture
+
+	•	since it is read focused system where we will read more data than write, we can create read replicas of DB
+	◦	trade off for this can be latency. but we want accurate data instead of fast result. So we can use read lock so read operations are paused when we are writing to db
+	•	we can also use Sharding to split the DB into smaller manageable parts. It is part of horizontal partitioning
+	•

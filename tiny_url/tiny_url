@@ -1,0 +1,59 @@
+Shortening URL
+
+System Requirements
+
+- should be able to create a short url from a given long url
+- able to redirect to long url on calling short url
+- short url should be small like ad.com/{7 characters}
+- we should retain the short url
+- planning on using a Relational Database
+
+Entities
+
+- URL table
+id shortUrl longUrl
+
+URL shortening logic
+
+- Base62
+it requires a number and it converts it to base62 code
+we can generate a random number for any given long url and convert it to base62 to be used as short url
+save the values in DB
+
+-MD5 Hash
+converts a string aka our long url to some encoded long value
+need to fetch starting 7 chars
+save the values in DB
+
+DB logic
+
+for both logic, chances of collision are present
+-Base62
+to check collision, INSERT IF NOT EXISTS (can be used only in RDBMS)
+collision occurs, generate new random number
+-MD5
+to check collision, INSERT IF NOT EXISTS (can be used only in RDBMS)
+collision occurs, add some random string to long URL and then convert to short (not a feasible approach)
+
+FIX
+use counter
+since each count will be new, no need to check before adding short url to DB
+
+Problems with counter
+what if service goes down
+or we need to scale up, how will new/multiple server get control of counter
+
+the solution to this is an distributed and open-source service called zookeeper
+it helps in implementing high levels of synchronisation and configuration maintenance
+
+to further make service better and more consistent
+add load balancer
+add caching mechanism
+
+
+Apis required
+/shorten : longurl to short URL
+/redirect : fetch longURL and redirect
+
+
+

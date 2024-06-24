@@ -1,0 +1,41 @@
+Netflix
+
+Questions
+
+		do i need to do authentication
+		do i need to write algo for recommendation
+		focus on user activity data
+		Recommendation engine
+		how many people have Netflix? - 200 M users
+
+Types of data
+
+		video content
+		Video static content - names of movies, description, thumbnails
+		user metadata - user watched, last watched, likes
+		activity logs - clicks, impressions, scrolls
+
+Assumptions
+
+		200M users 10k Videos
+		half movies and half shows
+		1hr avg 30GB/hr = 300TB data
+		use blob storage like AWS S3 because it has a ceiling of 300TB
+
+Video static Content
+		titles, desc, cast lists, etc
+		for this we can use RDBMS
+		also can use Cache to popular shows etc to decrease latency
+
+User Metadata
+		200M *
+		Postgres (run complex queries in backend so using it instead of NoSQL)
+		use sharding for low latency
+		indexing on user id
+
+
+Public Endpoints
+
+We can use CDN (Content Delivery Network) if we want to expand as users can be from all around the globe.
+We can add CDN Populator that will populate the cache servers or edge serverrs of CDN before the user requesting them
+- delivers content and other digital assets to users based on their geographic location.
