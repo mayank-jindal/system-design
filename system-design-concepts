@@ -1,0 +1,66 @@
+Concepts
+
+1. vertical scaling
+    adding more resources like increasing the cpu and memory
+2. horizontal scaling
+    increasing the number of replicas. It adds redundancy and fault tolerance as there is no longer a single point of
+    failure
+3. load balancer
+    directs incoming requests to the appropriate server. uses Round Robin or hashing approach
+4. content delivery networks
+    network of servers located around the world. work by taking files from origin server and copying it to the CDN
+    servers. It can be done on a push or pull basis. CDN is basically a type of caching for image, video, html, css, js
+    files
+5. caching
+    creating copies of data so it can be fetched faster
+6. ip address
+    uniquely identifies a device on a network like 255.255.255.255
+7. tcp
+    while sending files, they are broken into packets and then reassembled when reaching destination. http and websocket
+     are built on tcp
+8. dns
+    domain name system- large decentralized service that works to translate domain to its ip address
+9. http
+    tcp is too low level so we use application-layer protocol aka http. follows client-server model. contains 2 parts-
+    request head and request body
+    10. rest api
+        one of the api pattern.
+        200 - successful request
+        400 - bad request
+        500 - issue with server
+    11. graphql
+        another api pattern introduced by facebook in 2015. make a single request like query and choose exactly which
+        resources you wanna fetch
+    12. grpc
+        another api pattern by google in 2016. used for server-to-server communication. uses protocol buffers instead of
+         json unlike rest which are more storage efficient so it is quicker. but json is human readable so it still wins
+13. websocket
+    another application layer protocol. mainly used to implement chat messengers. unlike http they support bidirectional
+     communication. when we send a message, it is immediately pushed to the receiver's device
+14. sql
+    relational database management system. more efficiently stores data using data structures and fast retrieval of data
+    using sql queries since data is organized into tables.
+15. acid
+    rdbms are ACID compliant
+    a - atomicity: every transaction is all or nothing
+    c - consistency: foreign key, etc are always enforced
+    i - isolation: concurrent transactions wont interfere with each other
+    d - durability: even if machine restarts, data is not lost
+16. nosql
+    consistency makes rdbms harder to scale. nosql does not provide consistency but provides availability. ex dynamoDB
+    (key-value store), mongoDB(document store), etc
+17. sharding
+    breaking up of our database and scale it horizontally. we use a shard key to partition like on id
+18. replication
+    sharding can get complicated. simpler approach is to create read-replicas of our database. helpful in case of read
+    heavy use-cases.
+19. cap theorem
+    given a network partition in a database, we can choose to favor either data consistency or data availability
+    C - consistency
+    A - availability
+    P - partition(network)
+20. message queues
+    kind of like databases. can be replicated for redundancy or sharded for scalability. if our system is receiving more
+     data than it can process, message queue can help to persist the data before we are able to process it. also it
+     helps that other parts of our system can become decoupled
+
