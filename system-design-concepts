@@ -59,6 +59,9 @@ Concepts
     C - consistency
     A - availability
     P - partition(network)
+    CA - rdbms
+    CP - mongodb, redis
+    AP - dynamodb, cassandra
 20. message queues
     kind of like databases. can be replicated for redundancy or sharded for scalability. if our system is receiving more
      data than it can process, message queue can help to persist the data before we are able to process it. also it
