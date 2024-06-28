@@ -1,0 +1,49 @@
+messenger
+
+Product goals
+
+    real-time messaging
+    groups
+    online status
+    media uploads
+    read receipts
+    notification
+
+Technical goals
+
+    low latency
+    high volume
+    reliable and available
+    secure
+
+Design
+
+1. first approach we can think of is, user sends a message to the server and the server then relays that message to the
+intended user. But this breaks the model of how http works because it cannot be server initiated rather should be client
+ initiated.
+2. second approach we can try is do http polling. so we keep polling from server if we have any new messages and if we
+have a new message, server will send us that message. It is not a good approach cause we will be sending a lot of
+unnecessary requests to the server and also it will result in high latency.
+3. Another option we have is long polling. Similar to above approach, we will poll from the server but instead of server
+ returning no in case of no new messages, it holds on to the request until data is available. This way we maintain an
+ open connection with server the whole time. Is will somewhat reduce latency so it is good for notification system, etc
+ but not for real-time messaging
+4. Websockets: in this as well we maintain an open connection but instead of one-way connection, it is a full duplex
+connection. So we can send data to server and server can send data to us and this connection is maintained open for the
+duration of the session.
+
+Websocket is based on tcp protocol which has 16 bits for port number. So each server will have 65000 connections max
+open at a time.
+Hence we will have multiple servers managed by a load balancer.
+To handle communication between so many servers now, we will have a single messaging service to manage a
+centralized message queue.
+
+For database selection, as per CAP theorem, we want to focus on availability rather than consistency  so we will go with
+ nosql database that has built-in replication and sharding like cassandra.
+
+How to improve performance
+    we can use cache so as not to go to db for every call
+    use object storage service like amazon s3 for storing media
+    we can use cache like CDN and user will request resource from CDN if its cached already else CDN will fetch it from
+    our object storage
+    we can have a notification service to notify user if offline using some 3rd party api
